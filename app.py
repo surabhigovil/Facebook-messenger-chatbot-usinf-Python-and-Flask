@@ -8,10 +8,8 @@ import os
 
 app = Flask(__name__)
 
-with open("authentication.json", "r") as f:
-    my_dict = json.load(f)
-ACCESS_TOKEN = my_dict["access_token"]
-VERIFY_TOKEN = my_dict["verify_token"]
+ACCESS_TOKEN = os.environ.get("ACCESS_TOKEN")
+VERIFY_TOKEN = os.environ.get("VERIFY_TOKEN")
 bot = Bot(ACCESS_TOKEN)
 
 #We will receive messages that Facebook sends our bot at this endpoint
