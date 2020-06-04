@@ -1,11 +1,15 @@
 #Python libraries that we need to import for our bot
 import random
+import json
 from flask import Flask, request
 from pymessenger.bot import Bot
 
 app = Flask(__name__)
-ACCESS_TOKEN = 'EAADxGckpKsoBAAyJ88SewkZBS4ZAWcFGiSFjGvN6KN5lVERBmAFd5w64d06BeXArsiURswlqP0SHfFJLodgYkK5jw8nH4YLeOEZCtac8YZCaEwvR8aZCaknZBNx7BY9pk76o0sccfLo7ZC9dM3vUPZA4lQCCdFkOqUbZAV4oDETdtFwZDZD'
-VERIFY_TOKEN = 'TESTINGTOKEN'
+
+with open("authentication.json", "r") as f:
+    my_dict = json.load(f)
+ACCESS_TOKEN = my_dict["access_token"]
+VERIFY_TOKEN = my_dict["verify_token"]
 bot = Bot(ACCESS_TOKEN)
 
 #We will receive messages that Facebook sends our bot at this endpoint
